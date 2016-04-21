@@ -1,70 +1,125 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Rock Paper Scissors Part 1</title>
-</head>
-<body>
+	<html>
+	<head>
+		<title>Hangman Car Brands</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/reset.css">		
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		
+	</head>
+	
+	<body>
+		<div class="container">
+				
+				<header>
+					<img src="assets/images/neonmakes.png">
+				</header>
 
-<!-- This is where the code will go that we created. -->
-<div id="game">
-	<p>Press r, p or s to start playing</p>
-</div>
 
-<script type="text/javascript">
+				<!-- one row will be split into two columns.. -->
+						<div class="secondhead">
+							<div id=carSlogan></div>
+						</div>
+						
+						<div class="col1">
+							<img id="carPic" class="newimage" src="assets/images/qmark.png">
+						</div>
+				
 
-// Sets the computer choices 
-var computerChoices = ['r', 'p', 's'];
 
-// Declares the tallies to 0 
-var wins = 0;
-var losses = 0;
-var ties = 0;
+						<div class="col2"> 
+						<br>
+								<p>Press any key to get started!</p>
+								<br>
+								<p>Wins</p>
+								<br>
+								<p id="wins"></p>
+								<br>
+								<p>Current Word</p>
+								<br>
+								<p id="guessWrite"></p>
+								<br>
+								<br>
+								<br>
+								<p>Number of Guesses Remaining</p>
+								<br>
+								<p id="guessesLeft"></p>
+								<br>
+								<br>
+								<p>Letters already Guessed</p>
+								<br>
+								<p id="lettersGuessed"></p>
+								<br>
+								<br>
 
-// When the user presses the key it records the keypress and then sets it to userguess
-document.onkeyup = function(event) {
-	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+							
+						</div>
+				
 
-	// This sets the computer guess equal to the random.
-	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-	// Making sure the user chooses r, p, or s
-	if ((userGuess == 'r') || (userGuess == 'p') || (userGuess == 's')){
+				
+		</div> <!-- container end-->
+	<script type="text/javascript">
+		function startGame() {
 
-		// It tests to determine if the computer or the user won the round and then increments 
-		if ((userGuess == 'r') && (computerGuess == 's')){
-			wins++;
-		}else if ((userGuess == 'r') && (computerGuess == 'p')){
-			losses++;
-		}else if ((userGuess == 's') && (computerGuess == 'r')){
-			losses++;
-		}else if ((userGuess == 's') && (computerGuess == 'p')){
-			wins++;
-		}else if ((userGuess == 'p') && (computerGuess == 'r')){
-			wins++;
-		}else if ((userGuess == 'p') && (computerGuess == 's')){
-			losses++;
-		}else if (userGuess == computerGuess){
-			ties++;
-		}  
+			var cars = ['chevrolet', 'ford', 'cadillac', 'volkswagen', 'toyota', 'nissan'];
+			var alphabet="abcdefghijklmnopqrstuvwxyz";
+			
+			// Declares the tallies to 0 
+			var remainingGuesses = 10;
+			var wins = 0;
+			var losses = 0;
+			var lettersTried="";
 
-		// Taking the tallies and displaying them in HTML
-		var html = "<p>Press r, p or s to start playing</p>" +
-		"<p>wins: " + 
-		wins + 
-		"</p>" +
-		"<p>losses: " + 
-		losses + 
-		"</p>" +
-		"<p>ties: " + 
-		ties + 
-		"</p>";
 
-		// Placing the html into the game ID
-		document.querySelector('#game').innerHTML = html;
+			// Computer chooses new word
+			// we check word for length and establish new variable to placehold spaces or dashes
+			var car = cars [Math.floor(Math.random() * cars.length)];
+			console.log(car);
+			var yourAnswer = "";
+				for (i=0; i<car.length; i++) {
+					yourAnswer=yourAnswer+"_";
+				}
+			console.log(yourAnswer);
+			document.getElementById("guessWrite").innerHTML = yourAnswer;
+			do {
+		
+					// When the user presses the key it records the keypress and then sets it to userguess
 
-	}
-}
+					document.onkeyup = function(event) {
+						var userGuess = String.fromCharCode(event.keyCode).toLowerCase(); 
+					
+						console.log(userGuess);
+						if alphabet.includes(userGuess)==true
+						else
+							alert("You did not pick a valid letter, Please try again!")
+							return
+						if lettersTried.includes(userGuess)==true
+							alert("You already tried that number...Please try another!")
+							return
+						else
+						if lettersTried==""
+							console.log(userGuess + "it Worked");
+							lettersTried+=userGuess;
+						else 
+							lettersTried+= ", " +userGuess;
 
-</script>
+						if car.includes(userGuess) == true
+						
+								for (i=0; i<car.length;i++)
+									if charAt(i) == userGuess
+										yourAnswer.extract(i,1)
+										yourAnswer.
+
+						else	
+							remainingGuesses--;
+						}
+				}
+	
+			while (remainingGuesses > 0) 
+	
+
+	} 
+startGame()
+	</script>
 </body>
 </html>
